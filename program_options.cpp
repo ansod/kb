@@ -31,12 +31,13 @@ void program_options::parse(int argc, char* argv[])
 
         if (exp_flag || exp_any)
         {
-            exp_any = false;
+            
             exp_flag = false;
             if (arg == "-t")
             {
                 _commands.flag = arg;
                 exp_tname = true;
+                exp_any = false;
                 continue;
             }
 
@@ -44,6 +45,7 @@ void program_options::parse(int argc, char* argv[])
             {
                 _commands.flag = "-c";
                 exp_cname = true;
+                exp_any = false;
                 continue;
             }
 
@@ -52,6 +54,7 @@ void program_options::parse(int argc, char* argv[])
                 _commands.flag = "-m";
                 exp_tname = true;
                 exp_cname = true;
+                exp_any = false;
                 continue;
             }
         }
