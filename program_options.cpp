@@ -33,15 +33,16 @@ void program_options::parse(int argc, char* argv[])
         {
             
             exp_flag = false;
-            if (arg == "-t")
+            if (arg == "-t" || arg == "--task")
             {
-                _commands.flag = arg;
+                _commands.flag = "-t";
                 exp_tname = true;
+                exp_cname = true;
                 exp_any = false;
                 continue;
             }
 
-            if (arg == "-c")
+            if (arg == "-c" || arg == "--column")
             {
                 _commands.flag = "-c";
                 exp_cname = true;
@@ -49,7 +50,7 @@ void program_options::parse(int argc, char* argv[])
                 continue;
             }
 
-            if (arg == "-m")
+            if (arg == "-m" || arg == "--move")
             {
                 _commands.flag = "-m";
                 exp_tname = true;
