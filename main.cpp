@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "program_options.hpp"
+#include "board.hpp"
 
 /*
 
@@ -15,7 +16,15 @@ kb myboard -t task1 col1
 
 kb myboard -m task1 col1
 
+kb myboard -a task1 assignee1
+
+kb myboard -s task1 [-n | -h]
+
 kb myboard task1
+
+
+TODO:
+- Add assign flag when creating task
 
 */
 using namespace std;
@@ -52,6 +61,8 @@ int main(int argc, char *argv[])
             cout << "Missing name of task to add or name of column to add to" << endl;
             return 0;
         }
+
+        Board board{cmds.bname};
 
     } else if (cmds.flag == "-c")
     {
