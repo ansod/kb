@@ -8,6 +8,7 @@ class Task
 private:
     std::string name;
     std::string desc;
+    std::string colname;
     Priority priority{Priority::NORMAL};
 
 public:

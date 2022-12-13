@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    Board board{cmds.bname};
     if (cmds.flag ==  "-t")
     {
         if (cmds.tname == "" || cmds.cname == "")
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
             return 0;
         }
 
-        Board board{cmds.bname};
+        board.addTask(cmds.tname, cmds.cname);
 
     } else if (cmds.flag == "-c")
     {
@@ -72,6 +73,8 @@ int main(int argc, char *argv[])
             return 0;
         }
 
+        board.addColumn(cmds.cname);
+
     } else if (cmds.flag == "-m")
     {
         if (cmds.tname == "" || cmds.cname == "")
@@ -80,14 +83,18 @@ int main(int argc, char *argv[])
             return 0;
         }
 
+        board.moveTask(cmds.tname, cmds.cname);
+
     } else 
     {
         if (cmds.tname != "")
         {
             // show task
+            board.printTask(cmds.tname);
         } else
         {
-            // show board
+            // show board or create board
+            board.printBoard();
         }
     }
 
