@@ -10,6 +10,7 @@ private:
     std::vector<std::unique_ptr<Column>> columns;
 
     std::unique_ptr<Task> getTask(std::string taskname);
+    std::unique_ptr<Column> getColumn(std::string colname);
 
 public:
     Board(std::string name);
