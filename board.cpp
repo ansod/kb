@@ -1,10 +1,12 @@
+#include <iostream>
 #include "board.hpp"
 
-
-Board::Board(std::string name)
+/*
+Board::Board(std::string boardname)
 {
     // read from json file
 }
+*/
 
 Board::~Board()
 {
@@ -18,38 +20,47 @@ void Board::printBoard()
 
 void Board::printTask(std::string taskname)
 {
+    auto idx = this->getTaskId(taskname);
 
+    if (idx != -1)
+    {
+        this->tasks[idx]->printTask();
+        return;
+    }
+
+    std::cout << "Could not find task with name " << taskname << std::endl;
 }
 
 void Board::addColumn(std::string colname)
 {
-    std::unique_ptr<Column> c = std::make_unique<Column>(colname);
-    this->columns.push_back(c);
+    this->columns.push_back(colname);
 }
 
 void Board::addTask(std::string taskname, std::string colname)
 {
-
+    this->tasks.push_back(std::make_unique<Task>(taskname, colname));
 }
 
 void Board::moveTask(std::string taskname, std::string colname)
 {
-
-}
-
-std::unique_ptr<Task> Board::getTask(std::string taskname)
-{
-
-}
-
-std::unique_ptr<Column> Board::getColumn(std::string colname)
-{
-    auto it = std::find_if(this->columns.begin(), this->columns.end(), [&colname](const std::unique_ptr<Column> col) {return col->getName() == colname;});
-
-    if (it != this->columns.end())
+    auto idx = this->getTaskId(taskname);
+    
+    if (idx != -1)
     {
-        auto index = std::distance(this->columns.begin(), it);
-        return this->columns[index];
+        this->tasks[idx]->moveTask(colname);
     }
 
+    std::cout << "Could not move task " << taskname << " to column " << colname << std::endl;
+}
+
+size_t Board::getTaskId(std::string taskname)
+{
+    auto it = std::find_if(this->tasks.begin(), this->tasks.end(), [&taskname](std::unique_ptr<Task>& task) {return task->getName() == taskname;});
+
+    if (it != this->tasks.end())
+    {
+        size_t index = std::distance(this->tasks.begin(), it);
+        return index;
+    }
+    return -1;
 }

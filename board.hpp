@@ -1,19 +1,19 @@
 #include <string>
 #include <vector>
 
-#include "column.hpp"
+#include "task.hpp"
 
 class Board
 {
 private:
     std::string name;
-    std::vector<std::unique_ptr<Column>> columns;
+    std::vector<std::string> columns;
+    std::vector<std::unique_ptr<Task>> tasks;
 
-    std::unique_ptr<Task> getTask(std::string taskname);
-    std::unique_ptr<Column> getColumn(std::string colname);
+    size_t getTaskId(std::string taskname);
 
 public:
-    Board(std::string name);
+    Board(std::string boardname) : name{boardname} {};
     ~Board();
     void printBoard();
     void printTask(std::string taskname);
