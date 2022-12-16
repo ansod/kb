@@ -15,6 +15,8 @@ private:
 public:
     Board(std::string boardname) : name{boardname} {};
     ~Board();
+    void loadBoard();
+    void saveBoard();
     void printBoard();
     void printTask(std::string taskname);
     void addColumn(std::string colname);

@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
     }
 
     Board board{cmds.bname};
+    board.loadBoard();
     if (cmds.flag ==  "-t")
     {
         if (cmds.tname == "" || cmds.cname == "")
@@ -64,7 +65,7 @@ int main(int argc, char *argv[])
         }
 
         board.addTask(cmds.tname, cmds.cname);
-
+        board.saveBoard();
     } else if (cmds.flag == "-c")
     {
         if (cmds.cname == "")
@@ -74,7 +75,7 @@ int main(int argc, char *argv[])
         }
 
         board.addColumn(cmds.cname);
-
+        board.saveBoard();
     } else if (cmds.flag == "-m")
     {
         if (cmds.tname == "" || cmds.cname == "")
@@ -84,7 +85,7 @@ int main(int argc, char *argv[])
         }
 
         board.moveTask(cmds.tname, cmds.cname);
-
+        board.saveBoard();
     } else 
     {
         if (cmds.tname != "")

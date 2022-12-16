@@ -2,12 +2,6 @@
 
 #include "task.hpp"
 
-/*
-Task::Task(std::string taskname, std::string colname)
-{
-
-}
-*/
 
 Task::~Task()
 {
@@ -58,4 +52,35 @@ void Task::setDescription(std::string desc)
 std::string Task::getName()
 {
     return this->name;
+}
+
+std::string Task::getColumn()
+{
+    return this->column;
+}
+
+std::string Task::getDesc()
+{
+    return this->desc;
+}
+
+std::string Task::getPriority()
+{
+    switch (this->priority)
+    {
+    case Priority::NORMAL:
+        return "normal";
+        break;
+    case Priority::HIGH:
+        return "high";
+        break;
+    default:
+        return "normal";
+        break;
+    };
+}
+
+std::string Task::getAssignee()
+{
+    return this->assignee;
 }
