@@ -22,4 +22,7 @@ public:
     void addColumn(std::string colname);
     void addTask(std::string taskname, std::string colname);
     void moveTask(std::string taskname, std::string colname);
+    void assignTask(std::string taskname, std::string assignee);
+    void setTaskPriority(std::string taskname, std::string priority);
+    void setTaskDescription(std::string taskname, std::string desc);
 };

@@ -10,6 +10,7 @@ namespace program_options {
         std::string flag;
         std::string tname;
         std::string cname;
+        std::string info;
     };
 
     void parse(int argc, char* argv[]);

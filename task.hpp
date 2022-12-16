@@ -19,7 +19,7 @@ public:
     void printTask();
     void moveTask(std::string newcol);
     void assignTask(std::string assignee);
-    void setPriority(Priority);
+    void setPriority(std::string priority);
     void setDescription(std::string desc);
     std::string getName();
     std::string getColumn();

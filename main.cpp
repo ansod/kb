@@ -8,17 +8,19 @@
 
 Usage:
 
-kb myboard // create board if it doesn't exist and show board if it exists
+kb myboard  //create board if it doesn't exist and show board if it exists
 
-kb myboard -d col1
+kb myboard -c col1  // add column  
 
-kb myboard -t task1 col1
+kb myboard -t task1 col1    // add task to column
 
-kb myboard -m task1 col1
+kb myboard task1 -m col1    // move task to column
 
-kb myboard -a task1 assignee1
+kb myboard task1 -a assignee1   // assign task to assignee
 
-kb myboard -s task1 [-n | -h]
+kb myboard task1 -p [normal | high] // set task priority
+
+kb myboard task1 -d "some description" // set task description
 
 kb myboard task1
 
@@ -42,11 +44,13 @@ int main(int argc, char *argv[])
     program_options::parse(argc, argv); // parse args
     program_options::Commands cmds = program_options::commands(); // retrieve parsed args as a struct
 
+    /*
     cout << "bname: " << cmds.bname << endl;
     cout << "flag: " << cmds.flag << endl;
     cout << "tname: " << cmds.tname << endl;
     cout << "cname: " << cmds.cname << endl;
-
+    cout << "info: " << cmds.info << endl;
+    */
 
     if (cmds.bname == "")
     {
@@ -85,6 +89,35 @@ int main(int argc, char *argv[])
         }
 
         board.moveTask(cmds.tname, cmds.cname);
+        board.saveBoard();
+    } else if (cmds.flag == "-a")
+    {
+        if (cmds.tname == "" || cmds.info == "")
+        {
+            cout << "Missing name of task or name of assignee" << endl;
+            return 0;
+        }
+
+        board.assignTask(cmds.tname, cmds.info);
+        board.saveBoard();
+    } else if (cmds.flag == "-p")
+    {
+        if (cmds.tname == "" || cmds.info == "")
+        {
+            cout << "Missing name of task or priority" << endl;
+            return 0;
+        }
+
+        board.setTaskPriority(cmds.tname, cmds.info);
+        board.saveBoard();
+    } else if (cmds.flag == "-d")
+    {
+        if (cmds.tname == "" || cmds.info == "")
+        {
+            cout << "Missing name of task or description" << endl;
+            return 0;
+        }
+        board.setTaskDescription(cmds.tname, cmds.info);
         board.saveBoard();
     } else 
     {

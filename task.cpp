@@ -39,9 +39,15 @@ void Task::assignTask(std::string assignee)
     this->assignee = assignee;
 }
 
-void Task::setPriority(Priority priority)
-{
-    this->priority = priority;
+void Task::setPriority(std::string priority)
+{   
+    if (priority == "high")
+    {
+         this->priority = Priority::HIGH;
+    } else {
+        this->priority = Priority::NORMAL;
+    }
+   
 }
 
 void Task::setDescription(std::string desc)

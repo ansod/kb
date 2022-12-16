@@ -117,6 +117,23 @@ void Board::moveTask(std::string taskname, std::string colname)
     std::cout << "Could not move task " << taskname << " to column " << colname << std::endl;
 }
 
+void Board::assignTask(std::string taskname, std::string assignee)
+{
+    this->tasks[this->getTaskId(taskname)]->assignTask(assignee);
+}
+
+void Board::setTaskPriority(std::string taskname, std::string priority)
+{
+    this->tasks[this->getTaskId(taskname)]->setPriority(priority);
+}
+
+
+void Board::setTaskDescription(std::string taskname, std::string desc)
+{
+    this->tasks[this->getTaskId(taskname)]->setDescription(desc);
+}
+
+
 size_t Board::getTaskId(std::string taskname)
 {
     auto it = std::find_if(this->tasks.begin(), this->tasks.end(), [&taskname](std::unique_ptr<Task>& task) {return task->getName() == taskname;});
