@@ -24,11 +24,8 @@ kb myboard task1 -d "some description" // set task description
 
 kb myboard task1
 
-
-TODO:
-- Add assign flag when creating task
-
 */
+
 using namespace std;
 
 
@@ -69,7 +66,6 @@ int main(int argc, char *argv[])
         }
 
         board.addTask(cmds.tname, cmds.cname);
-        board.saveBoard();
     } else if (cmds.flag == "-c")
     {
         if (cmds.cname == "")
@@ -79,7 +75,6 @@ int main(int argc, char *argv[])
         }
 
         board.addColumn(cmds.cname);
-        board.saveBoard();
     } else if (cmds.flag == "-m")
     {
         if (cmds.tname == "" || cmds.cname == "")
@@ -89,7 +84,6 @@ int main(int argc, char *argv[])
         }
 
         board.moveTask(cmds.tname, cmds.cname);
-        board.saveBoard();
     } else if (cmds.flag == "-a")
     {
         if (cmds.tname == "" || cmds.info == "")
@@ -99,7 +93,6 @@ int main(int argc, char *argv[])
         }
 
         board.assignTask(cmds.tname, cmds.info);
-        board.saveBoard();
     } else if (cmds.flag == "-p")
     {
         if (cmds.tname == "" || cmds.info == "")
@@ -109,7 +102,6 @@ int main(int argc, char *argv[])
         }
 
         board.setTaskPriority(cmds.tname, cmds.info);
-        board.saveBoard();
     } else if (cmds.flag == "-d")
     {
         if (cmds.tname == "" || cmds.info == "")
@@ -118,7 +110,6 @@ int main(int argc, char *argv[])
             return 0;
         }
         board.setTaskDescription(cmds.tname, cmds.info);
-        board.saveBoard();
     } else 
     {
         if (cmds.tname != "")
@@ -132,5 +123,6 @@ int main(int argc, char *argv[])
         }
     }
 
+    board.saveBoard();
     return 0;
 }
